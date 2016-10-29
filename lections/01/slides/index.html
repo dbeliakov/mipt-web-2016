@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Веб-программирование на Физтехе 2016-2017</title>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../../../common/shower/themes/ribbon/styles/screen-16x10.css">
+</head>
+<body class="shower list">
+	<header class="caption">
+		<h1>Веб-программирование на Физтехе 2016-2017</h1>
+		<p>Занятие 1. Вводное. Основы UNIX</p>
+	</header>
+	<section class="slide" id="cover">
+		<h2>Занятие 1: Основы UNIX для разработчика. Системы контроля версий на примере git.</h2>
+		<p>Web Programming @ MIPT, 2016-2017</a></p>
+		<img src="./img/cover.jpg" alt="" class="cover">
+		<!--
+			To apply styles to the certain slides
+			set slide ID to get needed elements
+			-->
+		<style>
+			#cover h2 {
+				margin:30px 0 0;
+				color:#FFF;
+				text-align:center;
+				font-size:70px;
+				}
+			#cover p {
+				margin:10px 0 0;
+				text-align:center;
+				color:#FFF;
+				font-style:italic;
+				font-size:20px;
+				}
+				#cover p a {
+					color:#FFF;
+					}
+		</style>
+	</section>
+	<section class="slide">
+		<h2>About us</h2>
+		<img src="./img/us.jpg" style="width: 100%; height: 100%; object-fit: contain;"></img>
+
+	</section>
+
+	<section class="slide">
+		<h2>Plan 2016</h2>
+		<ol>
+			<li>27.10 - Основы UNIX для разработчика. Системы контроля версий на примере git.</li>
+		</ol>
+	</section>
+	<section class="slide">
+		<h2>Organisation</h2>
+		<ol>
+			<li>Все материалы доступны на <a href="https://github.com/dbeliakov/mipt-web-2016">GitHub</a></li>
+            <li>Вопросы и обсуждения по курсу в <a href="https://telegram.me/joinchat/A1QZuQfEG8twLTYLuc_eeg">Telegram</a>
+		</ol>
+	</section>
+
+	<section class="slide"><div>
+		<style>
+		table.bars {width: auto; margin-top: calc(50% - 97px - 105px); border:solid 1px black; border-bottom:0px; background-color:#FFF; margin-left:auto; margin-right:auto; margin-bottom:0px; }
+		table.bars tr.overall {border-bottom:solid 1px black}
+		table.bars th {line-height: 1; background: none; border:0px; text-align:right; vertical-align:middle; padding-bottom:0px; padding-left:10px; padding-right:10px; padding-top:0px;}
+		table.bars th.lbar {text-align:left; border-left:solid 1px gray;}
+		table.bars th a {text-decoration:none; vertical-align:middle; background: none;}
+		table.bars th a:hover {text-decoration: underline}
+		table.bars td {background: none; border:0px; border-left:solid 1px gray; text-align:left; padding:0px; padding-right:10px; }
+		table.bars td.barleg {border:solid 1px black; text-align:center; padding:10px;}
+		table.bars td.lbar {text-align:right; padding:0px; border-left:0px;}
+		table.bars th.cap1 {font-weight:normal; text-align:left; font-size:60%; border-bottom:solid 1px black; padding:0px; padding-left:2px; padding-right:2px; padding-top:2px; margin:0; }
+		table.bars td.cap1 {text-align:right; font-size:60%; border-bottom:solid 1px black; padding:0px; padding-top:2px; padding-right:2px; margin:0; }
+		table.bars td.cap2 {line-height: 1; text-align:center; font-size:90%; border:solid 1px black; border-top:0px; padding:0.2em; padding-left:1em; padding-right:1em; margin:0;}
+		table.bars div.barleg {height:11px; width:11px; margin-right:6px; margin-left:12px; display:inline-block;}
+		table.bars div.bar {height:0.8em; margin-right:0.3em;}
+		table.bars div.bar0 {margin-top:8px;margin-bottom:8px;}
+		table.bars div.bar1 {margin-top:1px;margin-bottom:1px;}
+		table.bars div.bar2 {margin-top:1px;margin-bottom:1px;}
+		table.bars div.lbar {height:0.8em; margin-left:0px;}
+		table.bars div.filler {height:2px; margin-top:2px;margin-bottom:2px;}
+		table.bars div.filler2 {height:2px; margin:0px;}
+		table.bars div.b0 {background-color:#808080;}
+		table.bars div.b1 {background-color:green;}
+		table.bars div.b2 {background-color:red;}
+		table.bars div.b3 {background-color:blue;}
+		table.bars div.b4 {background-color:orange;}
+		table.bars div.b5 {background-color:aqua;}
+		table.bars div.b6 {background-color:yellow;}
+		table.bars div.b7 {background-color:lime;}
+		table.bars div.b8 {background-color:fuchsia;}
+		table.bars div.b9 {background-color:olive;}
+		table.bars div.b10{background-color:teal;}
+		table.bars div.b11{background-color:purple;}
+		table.bars div.b12{background-color:navy;}
+
+		table.bar {border:0px; margin:0px; width: auto;}
+		table.bar td {border:0px; text-align:left; vertical-align:middle; padding:0px; margin:0px;}
+		table.lbar {border:0px; margin:0px; margin-left:auto;}
+		table.lbar td {border:0px; text-align:right; vertical-align:middle; padding:0px; padding-left:5px; margin:0px;}
+	</style>
+
+		<h2>Server OS share</h2>
+		<table class="bars" ><tbody><tr><th><a href="http://w3techs.com/technologies/details/os-unix/all/all">Unix</a>
+		</th><td><table class="bar"><tbody><tr><td><div class="bar bar0 b0" style="width: 250px"></div></td>
+			<td>67.1%</td></tr></tbody></table></td></tr><tr><th>
+				<a href="http://w3techs.com/technologies/details/os-windows/all/all">Windows</a></th>
+				<td style="padding-top: 3px;"><table class="bar"><tbody><tr><td>
+					<div class="bar bar0 b0" style="width: 120px"></div></td><td>32.9%</td></tr></tbody></table>
+				</td></tr><tr><th class="cap1"></th><td class="cap1"><a href="http://w3techs.com/technologies/overview/operating_system/all">W3Techs.com</a>, 22 September 2015</td></tr><tr><td class="cap2" colspan="2">Percentages of websites using various operating systems<br>Note: a website may use more than one operating system</td></tr></tbody></table>
+
+	</div></section>
+	</section>
+	<section class="slide">
+		<h2>UNIX family</h2>
+		<a href="https://en.wikipedia.org/wiki/Unix" style="color: rgba(0,0,0,0);">
+			<img src="./img/history.svg" style="width: 100%; height: calc(100% - 100px); object-fit: contain;"></a>
+	</section>
+	<section class="slide">
+		<h2>Most popular modern UNIX systems</h2>
+		<ul>
+			<li><a href="http://www.ubuntu.com/desktop">Ubuntu</a> (Linux)</li>
+			<li><a href="https://getfedora.org/">Fedora</a> (Linux)</li>
+			<li>MacOS X (Darwin &lt;- FreeBSD)</li>
+			
+		</ul>
+		<p>Standard: <a href="https://en.wikipedia.org/wiki/POSIX">POSIX 1003.1-2008 TC1</a></p>
+		<p>Use <a href="https://www.virtualbox.org/">VirtualBox</a> to try, or install on host (dangerous, but cool).</p>
+	</section>
+	<section class="slide">
+		<h2>Ubuntu demo</h2>
+	</section>
+
+	<section class="slide">
+		<h2>Terminal</h2>
+		<img src="./img/term.png" style="width: 100%; height: calc(100% - 120px); object-fit: contain;">
+	</div></section>
+	</section>
+
+	<section class="slide">
+		<h2>Shell</h2>
+		<ul>
+			<li>One uses a <a href="https://en.wikipedia.org/wiki/Terminal_emulator">terminal emulator</a> to access the shell</li>
+			<li>Grandparent of all UNIX shells: <a href="https://en.wikipedia.org/wiki/Almquist_shell">Almquist shell (ash)</a></li>
+			<li>Most popular and widespread shell: <a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">bash</a> (Ubuntu, MacOS X)</li>
+      <li>Hipster shells: <a href="https://en.wikipedia.org/wiki/Z_shell">zsh</a>, <a href="https://en.wikipedia.org/wiki/Friendly_interactive_shell">fish</a></li>
+      <li><a href="http://pubs.opengroup.org/onlinepubs/9699919799/idx/shell.html">POSIX standard</a></li>
+		</ul>
+
+		<p>All scripts must carry a <a href="https://en.wikipedia.org/wiki/Shebang_(Unix)">shebang</a>, e.g.</p>
+		<pre>			<code>#!/bin/sh -e</code>
+		</pre>
+	</section>
+	<section class="slide" id="picture">
+		<h2>You can do everything with a shell</h2>
+		Some usefull commands:
+		<ul>
+			<li>ls</li>
+			<li>cd</li>
+			<li>pwd</li>
+			<li>kill</li>
+			<li>man</li>
+			<li>which</li>
+			<li>grep/egrep/fgrep</li>
+		</ul>
+	</section>
+	<section class="slide">
+		<h2>Installing software</h2>
+		<a href="https://en.wikipedia.org/wiki/Package_manager">Package Managers:</a>
+		<ul>
+			<li><a href="http://brew.sh/">Homebrew</a> on MacOSX</li>
+			<li><a href="https://chocolatey.org/">Chocolatey</a> on Windows</li>
+			<li><a href="https://en.wikipedia.org/wiki/Advanced_Packaging_Tool">apt-get</a> on Ubuntu, <a href="https://en.wikipedia.org/wiki/DNF_(software)">DNF</a> on Fedora, etc.</li>
+		</ul>
+		<h3>Example:</h3>
+		<pre>			<code>apt-get install chromium-browser</code>
+			<code>brew install git</code>
+		</pre>
+
+	</section>
+
+	<section class="slide">
+		<h2>Standard streams</h2>
+		<ul>
+			<li>stdout is for ordinary output (e.g., logs)</li>
+			<li>stderr is for errors output</li>
+      		<li>stdin is for reading input</li>
+			<li><a href="https://en.wikipedia.org/wiki/Standard_streams">More information on standard streams</a></li>
+		</ul>
+
+	</section>
+
+	<section class="slide">
+		<h2>Console editors</h2>
+		<ul>
+			<li><a href="https://en.wikipedia.org/wiki/Vim_(text_editor)">VIM</a></li>
+			<li><a href="https://en.wikipedia.org/wiki/Emacs">Emacs</a></li>
+			<li><a href="https://en.wikipedia.org/wiki/GNU_nano">nano</a></li>
+		</ul>
+
+	</section>
+	<section class="slide">
+		<h2>Bad version control</h2>
+		<img src="./img/bad_version.png" style="width: 100%; height: calc(100% - 120px); object-fit: contain;">
+	</section>
+	<section class="slide">
+		<h2>Use VCS</h2>
+		<ul>
+			<li>VCS - Version Control System</li>
+			<li><a href="https://en.wikipedia.org/wiki/Concurrent_Versions_System">Concurrent Versions System (CVS)</a></li>
+			<li><a href="https://en.wikipedia.org/wiki/Apache_Subversion">Subversion (SVN)</a></li>
+			<li><a href="https://en.wikipedia.org/wiki/Mercurial">Mercurial</a></li>
+			<li><a href="https://en.wikipedia.org/wiki/Git">GIT</a></li>
+		</ul>
+
+	</section>
+	<section class="slide">
+		<div id="vcs-container">
+			<img src="./img/vcs.png" id="vcs-img">
+			<ul>
+				<li>Commits</li>
+				<li>Branches</li>
+				<li>Merges</li>
+				<li>History (log)</li>
+				<li>Distributed operation
+					<ul>
+						<li>Pool and push</li>
+						<li>Remotes</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<style>
+		  #vcs-container {
+				display: flex;
+			}
+      #vcs-img {
+				height: 480px;
+				margin-right: 50px;
+			}
+		</style>
+
+	</section>
+
+	<section class="slide">
+		<h2>Learn GIT</h2>
+		<ul>
+			<li><a href="http://learngitbranching.js.org">LearnGitBranching</a></li>
+			<li><a href="https://github.com/nvie/gitflow">Git flow</a></li>
+			<li><a href="https://github.com">GitHub</a></li>
+		</ul>
+
+	</section>
+
+	<section class="slide">
+		<h2>Homework</h2>
+		<ul>
+            <li>Поставить Ubuntu (например, 16.04 LTS)
+			<li>Завести репозиторий на GitHub (куда в последующем будут выкладываться проекты)</li>
+			<li>Поиграться с ним, разобраться что такое commit, branch, merge, rebase</li>
+		</ul>
+
+	</section>
+
+	<!-- p class="badge">
+		<a href="https://github.com/shower/shower">Fork me on GitHub</a>
+	</p -->
+	<!--
+		To hide progress bar from entire presentation
+		just remove “progress” element.
+		-->
+	<div class="progress"></div>
+	<script src="../../../common/shower/shower.min.js"></script>
+	<!-- Copyright © 2015 Yours Truly, Famous Inc. -->
+	<!-- Photos by John Carey, fiftyfootshadows.net -->
+</body>
+</html>

@@ -1,6 +1,7 @@
 # Основы UNIX для разработчика. Системы контроля версий на примере git.
 
 **[Слайды](https://dbeliakov.github.io/mipt-web-2016/lections/01/slides/)**
+
 **[Скринкаст (часть 1)](https://youtu.be/2aQ0JLFlpEU)**
 
 * [Ubuntu 16.04](http://releases.ubuntu.com/16.04/)

@@ -2,7 +2,7 @@
 
 **[Слайды](https://dbeliakov.github.io/mipt-web-2016/lections/01/slides/)**
 
-**[Скринкаст (часть 1)](https://youtu.be/2aQ0JLFlpEU)**
+**[Скринкаст](https://youtu.be/2aQ0JLFlpEU)**
 
 * [Ubuntu 16.04](http://releases.ubuntu.com/16.04/)
 * [VirtualBox](https://www.virtualbox.org)
@@ -24,3 +24,5 @@ sudo apt-get install virtualbox-guest-additions-iso
 * [rm](http://citforum.ru/operating_systems/manpages/RM.1.shtml)
 * [mv](http://citforum.ru/operating_systems/manpages/MV.1.shtml)
 * [cp](http://citforum.ru/operating_systems/manpages/CP.1.shtml)
+
+Введение в команды Git: [learngitbranching.js.org](http://learngitbranching.js.org)

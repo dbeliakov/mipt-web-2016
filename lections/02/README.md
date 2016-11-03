@@ -1,4 +1,4 @@
-# Основы UNIX для разработчика. Системы контроля версий на примере git.
+# HTML & CSS
 
 **[Слайды](https://dbeliakov.github.io/mipt-web-2016/lections/02/slides/)**
 

@@ -1,0 +1,61 @@
+body {
+  background-color: rgb(243, 234, 245);
+}
+
+header {
+  text-align:center;
+  border: 4px double black;
+  font-size: 30pt;
+  font-weight: bold;
+  margin: 20px 40px;
+}
+
+.navigation {
+  width: 20%;
+  vertical-align: top;
+  position: fixed;
+  top: 15%;
+}
+
+.articles {
+  width: 70%;
+  margin: 0px auto;
+  position: absolute;
+  left: 20%;
+}
+
+.article {
+  background: rgb(200, 202, 245);
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.article > .header > .title {
+  font-size: 18pt;
+  font-weight: bold;
+}
+
+.article > .header > .subtitle {
+  font-size: 10pt;
+}
+
+.article > .header > .subtitle > .date {
+  position: relative;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.article > .header > .subtitle > .link {
+  position: relative;
+  display: inline-block;
+}
+
+.article > .body > img {
+  width: 50%;
+}
+
+.article > .header > .title:hover {
+  color: red;
+}

@@ -2,6 +2,8 @@
 
 **[Слайды](https://dbeliakov.github.io/mipt-web-2016/lections/02/slides/)**
 
+**[Скринкаст](https://youtu.be/64hkvLPb7Yg)**
+
 **[Код сайта с новостями](code/news)**
 
  Полезные ресурсы:

@@ -2,7 +2,7 @@
 
 **[Слайды](https://dbeliakov.github.io/mipt-web-2016/lections/03/slides/)**
 
-**[Скринкаст](TODO: )**
+**[Скринкаст](https://youtu.be/jL4_A9URkQ4)**
 
 
  Полезные ресурсы:

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Веб-программирование на Физтехе 2016-2017</title>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../../../common/shower/themes/ribbon/styles/screen-16x10.css">
+</head>
+<body class="shower list">
+	<header class="caption">
+		<h1>Веб-программирование на Физтехе 2016-2017</h1>
+		<p>Занятие 4. HTTP. Основы Python. Flask</p>
+	</header>
+	<section class="slide" id="cover">
+		<h2>Занятие 4. HTTP. Основы Python. Flask</h2>
+		<p>Web Programming @ MIPT, 2016-2017</a></p>
+		<img src="pictures/cover.jpg" alt="" class="cover">
+		<!--
+			To apply styles to the certain slides
+			set slide ID to get needed elements
+			-->
+		<style>
+			#cover h2 {
+				margin:30px 0 0;
+				color:#FFF;
+				text-align:center;
+				font-size:70px;
+				}
+			#cover p {
+				margin:10px 0 0;
+				text-align:center;
+				color:#FFF;
+				font-style:italic;
+				font-size:20px;
+				}
+				#cover p a {
+					color:#FFF;
+					}
+		</style>
+	</section>
+	<section class="slide">
+		<h2>HTTP</h2>
+		<ul>
+			<li><a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">Hypertext Transfer Protocol</a></li>
+			<li>Протокол прикладного уровня передачи данных (изначально - HTML, сейчас - любых)</li>
+			<li>Предпологает существование сервера и клиента</li>
+			<li>Основным объектом манипуляции является ресурс, на который указывает <a href="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">URI</a></li>
+			<li>Ресурс может быть как файлом на сервере, так и чем-то логическим</li>
+			<li>Метаданные передаются в <a href="https://en.wikipedia.org/wiki/List_of_HTTP_header_fields">HTTP-заголовке</a></li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>История</h2>
+		<ul>
+			<li>HTTP/0.9 - 1991 год, первая формализация клиент-серверного взаимодействия</li>
+			<li>HTTP/1.0 - 1996 год, документированная версия протокола, <a href="https://tools.ietf.org/html/rfc1945">RFC 1945</a></li>
+			<li>HTTP/1.1 - 1999 год, современная версия протокола, добавлена возможность "постоянного соединения", имя хоста в заголовке открывает возможноть виртуального хостинга</li>
+			<li>HTTP/2   - 2015 год - финальные черновики протокола, стал бинарным, мультиплексирование запросов, поддержка push, ...
+		</ul>
+	</section>
+
+	<section class="slide"><div>
+		<h2>Структура запроса</h2>
+		<ul>
+			<li>Стартовая строка - POST /login/ HTTP/1.0</li>
+			<li>Заголовки - Content-Type: text/html</li>
+			<li>Тело сообщения - login=admin&password=1234
+		</ul>
+
+		<b>Структура ответа</b> отличается только стартовой строкой: HTTP/1.1 200 OK
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Пример запроса</h2>
+		<div style="font-size: 15pt;">
+			GET /wiki/страница HTTP/1.1<br>
+			Host: ru.wikipedia.org</br>
+			User-Agent: Mozilla/5.0 (X11; U; Linux i686; ru; rv:1.9b5) Gecko/2008050509 Firefox/3.0b5</br>
+			Accept: text/html</br>
+			Connection: close</br>
+			(пустая строка)
+		</div>
+	</div></section>
+
+	<section class="slide">
+		<h2>Пример ответа</h2>
+		<div style="font-size: 13pt;">
+			HTTP/1.1 200 OK<br>
+			Date: Wed, 11 Feb 2009 11:20:59 GMT</br>
+			Server: Apache</br>
+			X-Powered-By: PHP/5.2.4-2ubuntu5wm1</br>
+			Last-Modified: Wed, 11 Feb 2009 11:20:59 GMT</br>
+			Content-Language: ru</br>
+			Content-Type: text/html; charset=utf-8</br>
+			Content-Length: 1234</br>
+			Connection: close</br>
+			(пустая строка)</br>
+			(далее следует запрошенная страница в HTML)
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>Методы</h2>
+
+		<ul>
+			<li>Основные: GET, POST</li>
+			<li>Менее используемые: OPTIONS, HEAD, PUT, PATCH, DELETE, TRACE, CONNECT</li>
+		</ul>
+
+	</section>
+
+	<section class="slide">
+		<h2>Коды ответа</h2>
+
+		<ul>
+			<li>Успех: 2xx</li>
+			<li>Перенаправление: 3xx</li>
+			<li>Ошибка клиента: 4xx</li>
+			<li>Ошибка сервера: 5xx</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Python</h2>
+
+		<li><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Высокоуровневый язык программирования</a></li>
+		<li>Ориентирован на простоту написания кода</li>
+		<li>Огромное количество библиотек, можно написать почти все что угодно</li>
+		<li>Интерпретируемый, медленный (в 5-100 раз медленнее C++)</li>
+		<li>Две используемые версии: 2.7 и 3.*</li>
+		<li><a href="http://pythontutor.ru">Интерактивный учебник</a></li>
+	</section>
+
+	<section class="slide">
+		<h2>Как исполнять код</h2>
+
+		<ul>
+			<li>Установка python: <code>apt-get install python</code></li>
+			<li>Запуск скрипта: <code>python script.py</code></li>
+			<li>Интерактивный интерпретатор: <code>python</code></li>
+			<li>Удобный интерактивный интерпретатор: <a href="https://ru.wikipedia.org/wiki/IPython">ipython</a></li>
+			<li>
+				Установка пакетов:<br>
+				<code>apt-get install python-pip</code><br>
+				<code>pip install flask</code>
+			</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Дзен Python</h2>
+
+		<code>import this</code>
+
+		<div style="font-size: 7pt;">
+			The Zen of Python, by Tim Peters<br><br>
+
+			Beautiful is better than ugly.<br>
+			Explicit is better than implicit.<br>
+			Simple is better than complex.<br>
+			Complex is better than complicated.<br>
+			Flat is better than nested.<br>
+			Sparse is better than dense.<br>
+			Readability counts.<br>
+			Special cases aren't special enough to break the rules.<br>
+			Although practicality beats purity.<br>
+			Errors should never pass silently.<br>
+			Unless explicitly silenced.<br>
+			In the face of ambiguity, refuse the temptation to guess.<br>
+			There should be one-- and preferably only one --obvious way to do it.<br>
+			Although that way may not be obvious at first unless you're Dutch.<br>
+			Now is better than never.<br>
+			Although never is often better than *right* now.<br>
+			If the implementation is hard to explain, it's a bad idea.<br>
+			If the implementation is easy to explain, it may be a good idea.<br>
+			Namespaces are one honking great idea -- let's do more of those!<br>
+		</div>
+	</section>
+
+	<section class="slide">
+		<h2>Стандартные типы данных</h2>
+
+		<ul>
+			<li>int</li>
+			<li>float</li>
+			<li>string</li>
+			<li>bool (True or False)</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Переменные и операторы</h2>
+		<ul>
+			<li>Динамическая типизация:<br><code>x = 6 / 2<br>x = "Hello, world"</code></li>
+			<li>Операторы: +, -, *, %, +=, -= и т.п.</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Работа со строками и массивами</h2>
+		<ul>
+			<li>
+				Оператор []:<br>
+				<code>
+					s = 'Hello, world'<br>
+					x = s[0]<br>
+					y = s[-1]<br>
+					z = s[0:-1]<br>
+					m = s[:-1]
+				</code>
+			</li>
+			<li>
+				Аналогична работа с массивами:<br>
+				<code>
+					arr = [1, 2, 3];
+					x = arr[1]
+				</code>
+			</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Вывод на экран</h2>
+		<code>
+			x = 'Hello, world!'<br>
+			print x<br>
+			print<br>
+			print x[-1]<br>
+			print x[:-1], x[1]<br>
+		</code>
+	</section>
+
+	<section class="slide">
+		<h2>Пользовательский ввод</h2>
+		<code>
+			s = raw_input("Enter something.\n> ")<br>
+			print "You entered", s
+		</code>
+	</section>
+
+	<section class="slide">
+		<h2>Преобразование типов</h2>
+		<code>
+			s = '10'<br>
+			i = int(s)<br>
+			f = float(s)<br>
+			ss = str(f)<br>
+		</code>
+	</section>
+
+	<section class="slide">
+		<h2>Оператор if</h2>
+		<code>
+			if x < 0:<br>
+		  	&thinsp;&thinsp;&thinsp;&thinsp;sign = -1<br>
+		  	&thinsp;&thinsp;&thinsp;&thinsp;print "Negative"<br>
+			elif x == 0:<br>
+				&thinsp;&thinsp;&thinsp;&thinsp;sign = 0<br>
+		    &thinsp;&thinsp;&thinsp;&thinsp;print "Zero"<br>
+			else:<br>
+				&thinsp;&thinsp;&thinsp;&thinsp;sign = 1<br>
+		    &thinsp;&thinsp;&thinsp;&thinsp;print "Positive"<br>
+		</code>
+	</section>
+
+	<section class="slide">
+		<h2>Цикл while</h2>
+		<code>
+			x=4<br>
+			while x > 0:<br>
+					&thinsp;&thinsp;&thinsp;&thinsp;x -= 1<br>
+			  	&thinsp;&thinsp;&thinsp;&thinsp;print "Current value:", x<br>
+		</code>
+	</section>
+
+	<section class="slide">
+		<h2>Цикл for</h2>
+		<code>
+			words = [’cat’, ’dog’, ’python’]<br>
+			for x in words:<br>
+			    &thinsp;&thinsp;&thinsp;&thinsp;print x, len(x)<br>
+		</code>
+	</section>
+
+	<section class="slide">
+		<h2>Функция range</h2>
+		<code>
+			range(3)<br>
+			range(2, 7)<br>
+			range(2, 7, 2)<br>
+			range(5, 1, -1)<br><br>
+
+			for i in xrange(1, 5):<br>
+    		&thinsp;&thinsp;&thinsp;&thinsp;print i,
+		</code>
+	</section>
+
+	<section class="slide">
+		<h2>Функции</h2>
+		<code>
+			def salute():<br>
+      	&thinsp;&thinsp;&thinsp;&thinsp;print "Hello, world!"
+			<br><br>
+			salute()
+			<br><br>
+			def plus(a, b):<br>
+    		&thinsp;&thinsp;&thinsp;&thinsp;return a + b
+		</code>
+	</section>
+
+	<section class="slide">
+		<h2>Декораторы</h2>
+		<ul>
+			<li><a href="https://habrahabr.ru/post/141411/">Подробно</a></li>
+			<li>Позволяет добавить функционал функции, "декорируя" ее<br>
+				<code>
+					@logged<br>
+					def someFunc():<br>
+						&thinsp;&thinsp;&thinsp;&thinsp;pass<br>
+					<br><br>
+					someFunc()
+				</code>
+		<ul>
+	</section>
+
+	<section class="slide">
+		<h2>Flask</h2>
+		<ul>
+			<li><a href="http://flask.pocoo.org">Легковесный web-фреймворк</a></li>
+			<li><a href="http://flask.pocoo.org/docs/0.11/.latex/Flask.pdf">Полная документация в PDF</a></li>
+			<li>В пару строк кода позволяет сделать backend (т.е. минимальный overhead)</li>
+		<ul>
+	</section>
+
+	<section class="slide">
+		<h2>Homework</h2>
+		<ul>
+			<li>Простой TODO-лист</li>
+		</ul>
+
+	</section>
+
+	<section class="slide">
+		<h2 class="shout shrink">Вопросы?</h2>
+	</section>
+	<!--
+		To hide progress bar from entire presentation
+		just remove “progress” element.
+		-->
+	<div class="progress"></div>
+	<script src="../../../common/shower/shower.min.js"></script>
+	<!-- Copyright © 2015 Yours Truly, Famous Inc. -->
+	<!-- Photos by John Carey, fiftyfootshadows.net -->
+</body>
+</html>

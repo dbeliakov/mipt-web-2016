@@ -20,7 +20,6 @@ def login():
     elif request.method == 'POST':
         username = request.form.get('username', None)
         password = request.form.get('password', None)
-        print username, password, username == password
         if username is None or password is None or username != password:
             return render_template('login.html', error=u"Некорректные данные для входа")
         session['username'] = username

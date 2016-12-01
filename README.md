@@ -7,3 +7,4 @@
 3. [JavaScript & jQuery](lections/03)
 4. [HTTP. Основы Python. Flask](lections/04)
 5. [SimpleTaskTracker на Flask](lections/05)
+6. [Deployment](lections/06)

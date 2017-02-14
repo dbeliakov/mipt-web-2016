@@ -105,6 +105,106 @@
 	</section>
 
 	<section class="slide">
+		<h2>Выборка данных из БД</h2>
+		<ul>
+			<li>Для выборки из БД используется команда SELECT</li>
+			<li>Пример: SELECT email FROM users;</li>
+			<li>Чтобы выбрать все поля, можно указать *</li>
+			<li>Фильтрация: WHERE activated = false</li>
+			<li>Избыточность: SELECT DISTINCT</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Ограничение WHERE</h2>
+		<ul>
+			<li>Реляционные операторы: <code>=, >, <, >=, <=, <></code></li>
+			<li>Булевы операторы: <code>AND, OR, NOT</code></li>
+			<li>Специальные операторы: <code>IN, BETWEEN <> AND <>, LIKE (спец: _ и %)</code></li>
+			<li>NULL оператор: IS NULL, NOT NULL</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Аггрегатные функции</h2>
+		<ul>
+			<li><code>COUNT, SUM, AVG, MAX, MIN</code></li>
+			<li><code>COUNT (DISTINCT <>)</code></li>
+			<li><code>ALL и * для COUND искл/вкл NULL поля</code></li>
+			<li><code>Можно использовать на скалярных выражениях на столбцах</code></li>
+			<li><code>Способ аггрегации: GROUP BY</code></li>
+			<li><code>Фильтрация групп: HAVING</code></li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Объединение таблиц</h2>
+		<ul>
+			<li>Можно делать SELECT из нескольких таблиц, при этом в перечислении полей указывается имя таблицы</li>
+			<li>Критерий объединения: WHERE</li>
+			<li>Можно объединять таблицы с собой, используя псевдонимы (нужно помнить о дубликатах)</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Подзапросы</h2>
+		<code>
+			SELECT *
+        FROM Orders
+        WHERE snum =
+            ( SELECT snum
+                 FROM Salespeople
+                 WHERE sname = 'Motika' LIMIT 1);
+		</code>
+		<hr>
+		<code>
+			SELECT *
+                 FROM Customers outer
+                 WHERE 10/03/1990 IN
+                   ( SELECT odate
+                        FROM Orders inner
+                        WHERE outer.cnum = inner.cnum );
+		</code>
+		<hr>
+		<code>
+			SELECT cnum, cname, city
+                   FROM Customers
+                   WHERE EXISTS
+                       ( SELECT *
+                           FROM Customers
+                           WHERE city = " San Jose' );
+		</code>
+	</section>
+
+	<section class="slide">
+		<h2>Команды модификации</h2>
+		<ul>
+			<li><code>INSERT INTO Salespeople VALUES (1001, 'Peel', 'London', .12);</code></li>
+			<li><code>DELETE FROM Salespeople WHERE snum = 1003;</code></li>
+			<li><code>UPDATE Salespeople SET sname = 'Gibson',city = 'Boston',comm = .10 WHERE snum = 1004;</code></li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Создание и удаление таблиц</h2>
+		<ul>
+			<li><code>CREATE TABLE Saleepeople ( snum    integer, sname   char (10), city     char (10), comm   declmal );</code></li>
+			<li><code>DROP TABLE Saleepeople;</code></li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>DEMO: sqlite3</h2>
+		<ul>
+			<li>Простейший способ использовать БД</li>
+			<li>Вся БД хранится в одном файле</li>
+			<li>Отличный способ иметь БД в мобильных приложениях</li>
+			<li>Доступ из коммандной строки: sqlite3 filename</li>
+			<li><a href="http://www.codenet.ru/db/other/sqlite/">Дополнительные команды sqlite3</a></li>
+		</ul>
+	</section>
+
+	<section class="slide">
 		<h2 class="shout shrink">Вопросы?</h2>
 	</section>
 	<!--

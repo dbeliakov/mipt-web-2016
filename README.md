@@ -8,3 +8,4 @@
 4. [HTTP. Основы Python. Flask](lections/04)
 5. [SimpleTaskTracker на Flask](lections/05)
 6. [Deployment](lections/06)
+7. [Базы данных. SQL](lections/07)

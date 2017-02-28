@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Веб-программирование на Физтехе 2016-2017</title>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../../../common/shower/themes/ribbon/styles/screen-16x10.css">
+</head>
+<body class="shower list">
+	<header class="caption">
+		<h1>Веб-программирование на Физтехе 2016-2017</h1>
+		<p>Занятие 8. Введение в Django и Django ORM</p>
+	</header>
+	<section class="slide" id="cover">
+		<h2>Занятие 8. Введение в Django и Django ORM</h2>
+		<p>Web Programming @ MIPT, 2016-2017</a></p>
+		<img src="pictures/cover.jpg" alt="" class="cover">
+		<!--
+			To apply styles to the certain slides
+			set slide ID to get needed elements
+			-->
+		<style>
+			#cover h2 {
+				margin:30px 0 0;
+				color:#FFF;
+				text-align:center;
+				font-size:70px;
+				}
+			#cover p {
+				margin:10px 0 0;
+				text-align:center;
+				color:#FFF;
+				font-style:italic;
+				font-size:20px;
+				}
+				#cover p a {
+					color:#FFF;
+					}
+		</style>
+	</section>
+	
+
+	<section class="slide">
+		<h2>Django</h2>
+		<ul>
+			<li><a href="https://ru.wikipedia.org/wiki/Django">Django - фреймворк для веб-приложений</a></li>
+			<li><a href="https://ru.wikipedia.org/wiki/ORM">ORM - Object-Relational Mapping</a></li>
+			<li><a href="https://ru.wikipedia.org/wiki/Model-View-Controller">MVC - Model-View-Controller паттерн</a></li>
+			<li>Язык шаблонов</li>
+			<li>Большое количество модулей - админка, авторизация, сессии, ...</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Django architecture</h2>
+		<img src="pictures/architecture.jpg" style="width: 100%; height: 85%; object-fit: contain;"></img>
+	</section>
+
+	<section class="slide">
+		<h2>DEMO: start django project</h2>
+		<ul>
+			<li><code>django-admin.py startproject my_project</code></li>
+			<li><code>python manage.py migrate</code></li>
+			<li><code>python manage.py runserver</code></li>
+			<li><code>python manage.py startapp main_site</code></li>
+			<li>Changes in main_site/models.py
+			<li><code>python manage.py makemigrations</code></li>
+			<li><code>python manage.py check</code></li>
+			<li><code>python manage.py createsuperuser</code></li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>DEMO: ORM</h2>
+		<ul>
+		
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Django materials</h2>
+		<ul>
+			<li><a href="https://docs.djangoproject.com/en/1.10/intro/tutorial01/">Оффициальный туториал</a></li>
+			<li><a href="http://djangobook.com">DjangoBook.com</a></li>
+			<li><a href="http://djbook.ru/rel1.9/">DjBook.ru</a></li>
+			<li>Книга Antonio Mele - Django by example</li>
+			<li><a href="https://github.com/rosarior/awesome-django">Awesome django</a></li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2 class="shout shrink">Вопросы?</h2>
+	</section>
+	<!--
+		To hide progress bar from entire presentation
+		just remove “progress” element.
+		-->
+	<div class="progress"></div>
+	<script src="../../../common/shower/shower.min.js"></script>
+	<!-- Copyright © 2015 Yours Truly, Famous Inc. -->
+	<!-- Photos by John Carey, fiftyfootshadows.net -->
+</body>
+</html>

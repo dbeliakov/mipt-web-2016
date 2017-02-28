@@ -9,3 +9,4 @@
 5. [SimpleTaskTracker на Flask](lections/05)
 6. [Deployment](lections/06)
 7. [Базы данных. SQL](lections/07)
+7. [Введение в Django. Django.ORM ](lections/08)

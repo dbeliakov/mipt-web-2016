@@ -1,0 +1,10 @@
+<h1>Форум</h1>
+<h2>Категория {{category.title}}</h2>
+
+
+Обсуждения:
+<ul>
+    {% for thread in category.thread_set.all %}
+    <li><a href="{% url 'thread' thread.id 0 %}">{{ thread.title }}</a></li>
+    {% endfor %}
+</ul>

@@ -1,0 +1,11 @@
+<h1>Форум</h1>
+
+Категории:
+<table border="1">
+    {% for category in categories %}
+        <tr>
+            <td><img src={{ category.logo.url }} /></td>
+            <td><a href="{% url 'category' category.id %}">{{ category.title }}</a></td>
+        </tr>
+    {% endfor %}
+</table>

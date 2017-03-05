@@ -1,0 +1,10 @@
+<h1>Форум</h1>
+<h2>Категория {{thread.category.title}}</h2>
+
+
+<h3> Обсуждениe {{thread.title}} </h3>
+<ul>
+    {% for message in messages %}
+    <div><p>{{message.text}}</p></div>
+    {% endfor %}
+</ul>

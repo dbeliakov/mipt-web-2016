@@ -8,3 +8,11 @@
     <div><p>{{message.text}}</p></div>
     {% endfor %}
 </ul>
+
+<form action="{% url 'send_message' thread.id %}" method="post">
+    {% csrf_token %}
+    <textarea name="message" cols="150" rows="15">
+
+    </textarea>
+    <input type="submit" class="button" value="Отправить">
+</form>

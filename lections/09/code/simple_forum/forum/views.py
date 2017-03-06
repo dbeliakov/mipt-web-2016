@@ -29,3 +29,12 @@ def thread(request, thread_id, page_num):
 
 def profile(request, profile_id):
     return render(request, 'profile.html')
+
+
+#@login_required
+def send_message(request, thread_id):
+    thread = forum.models.Thread.objects.get(id=thread_id)
+    message = request.POST['message']
+    forum.models.Message(thread=thread, text=message, author=request.user).save()
+    last_page_num = math.ceil(float(len(thread.message_set.all())) / _MESSAGES_PER_PAGE)
+    return redirect('thread', thread_id=problem.id, page_num=last_page_num)

@@ -35,10 +35,10 @@
             <ul class="nav navbar-nav navbar-right">
               {% if not user.is_anonymous %}
                 <li><a href="#">{{ user }}</a></li>
-                <li><a href="{% url 'index' %}">Выйти</a></li>
+                <li><a href="{% url 'logout' %}">Выйти</a></li>
               {% else %}
-                <li><a href="{% url 'index' %}">Зарегистрироваться</a></li>
-                <li><a href="{% url 'index' %}">Войти</a></li>
+                <li><a href="{% url 'register' %}">Зарегистрироваться</a></li>
+                <li><a href="{% url 'login' %}">Войти</a></li>
               {% endif %}
             </ul>
           </div><!--/.nav-collapse -->
@@ -47,7 +47,7 @@
 
   {% block precontent %}
   {% endblock %}
-  
+
   {% block content %}
   {% endblock %}
 

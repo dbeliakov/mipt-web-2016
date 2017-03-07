@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^thread/(?P<thread_id>\d+)/(?P<page_num>\d+)/$', views.thread, name='thread'),
     url(r'^profile/(?P<profile_id>\d+)/$', views.profile, name='profile'),
     url(r'^send_message/(?P<thread_id>\d+)/$', views.send_message, name='send_message'),
+    url(r'^register/$', views.register, name='register'),
 ] 

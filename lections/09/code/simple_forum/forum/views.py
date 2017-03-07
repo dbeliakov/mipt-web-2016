@@ -1,4 +1,7 @@
 from django.shortcuts import redirect, render
+from django.contrib.auth.forms import UserCreationForm
+from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 
 import forum.models
 
@@ -30,10 +33,23 @@ def profile(request, profile_id):
     return render(request, 'profile.html')
 
 
-#@login_required
+@login_required
 def send_message(request, thread_id):
     thread = forum.models.Thread.objects.get(id=thread_id)
     message = request.POST['message']
     forum.models.Message(thread=thread, text=message, author=request.user).save()
     last_page_num = math.ceil(float(len(thread.message_set.all())) / _MESSAGES_PER_PAGE)
     return redirect('thread', thread_id=problem.id, page_num=last_page_num)
+
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            new_user = form.save()
+            return HttpResponseRedirect("/")
+    else:
+        form = UserCreationForm()
+    return render(request, "register.html", {
+        'form': form,
+    })

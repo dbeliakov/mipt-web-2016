@@ -13,22 +13,25 @@
 <h3> Обсуждениe {{thread.title}} </h3>
 {% endblock %}
 
-{% block content %}  
+{% block content %}
 <ul class="list-group">
     {% for message in messages %}
     <li class="list-group-item">
-      <div class="author">{{user}}</div>
+      <div class="author">{{message.author}}</div>
       <div class="message"><p>{{message.text}}</p></div>
     </li>
     {% endfor %}
 </ul>
 
-<form action="{% url 'send_message' thread.id %}" method="post">
+{% if user.is_authenticated %}
+  <form action="{% url 'send_message' thread.id %}" method="post">
     {% csrf_token %}
     <textarea name="message" cols="100" rows="10">
 
     </textarea>
     <br>
     <input type="submit" class="button" value="Отправить">
-</form>
+  </form>
+{% endif %}
 {% endblock %}
+

@@ -23,7 +23,6 @@ def thread(request, thread_id, page_num):
     min_message_id = int(page_num) * _MESSAGES_PER_PAGE
     max_message_id = min_message_id + _MESSAGES_PER_PAGE + 1
     messages = thread.message_set.filter(id__gt=min_message_id).filter(id__lt=max_message_id)
-    #messages = forum.models.Message.objects().filter(thread=thread.id).filter(id__gt=min_message_id).filter(id__lt=max_message_id)
     return render(request, 'thread.html', {'thread': thread, 'messages': messages, 'total_page_count': total_page_count})
 
 

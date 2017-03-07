@@ -1,11 +1,23 @@
-<h1>Форум</h1>
+{% extends "base.html" %}
 
-Категории:
-<table border="1">
-    {% for category in categories %}
+{% block head %}
+<title>Simple django forum</title>
+{% endblock %}
+
+{% block precontent %}
+<h2>Категории:</h2>
+<br>
+{% endblock %}
+
+{% block content %}  
+  <table class="table table-striped">
+  <tbody>
+      {% for category in categories %}
         <tr>
-            <td><img src={{ category.logo.url }} /></td>
-            <td><a href="{% url 'category' category.id %}">{{ category.title }}</a></td>
+          <td class="col-md-1"><img src={{ category.logo.url }} /></td>
+          <td><a href="{% url 'category' category.id %}">{{ category.title }}</a></td>
         </tr>
-    {% endfor %}
-</table>
+      {% endfor %}
+  </tbody>
+  </table>
+{% endblock %}

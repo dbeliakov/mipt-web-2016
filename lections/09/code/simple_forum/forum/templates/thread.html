@@ -1,18 +1,34 @@
-<h1>Форум</h1>
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'forum/css/thread.css' %}" />
+
+<title>Обсуждение</title>
+{% endblock %}
+
+{% block precontent %}
 <h2>Категория {{thread.category.title}}</h2>
-
-
 <h3> Обсуждениe {{thread.title}} </h3>
-<ul>
+{% endblock %}
+
+{% block content %}  
+<ul class="list-group">
     {% for message in messages %}
-    <div><p>{{message.text}}</p></div>
+    <li class="list-group-item">
+      <div class="author">{{user}}</div>
+      <div class="message"><p>{{message.text}}</p></div>
+    </li>
     {% endfor %}
 </ul>
 
 <form action="{% url 'send_message' thread.id %}" method="post">
     {% csrf_token %}
-    <textarea name="message" cols="150" rows="15">
+    <textarea name="message" cols="100" rows="10">
 
     </textarea>
+    <br>
     <input type="submit" class="button" value="Отправить">
 </form>
+{% endblock %}

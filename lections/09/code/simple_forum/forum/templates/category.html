@@ -1,10 +1,19 @@
-<h1>Форум</h1>
+{% extends "base.html" %}
+
+{% block head %}
+<title>Категории</title>
+{% endblock %}
+
+{% block precontent %}
 <h2>Категория {{category.title}}</h2>
+{% endblock %}
 
 
-Обсуждения:
-<ul>
+{% block content %}  
+Обсуждения: 
+<ul class="list-group">
     {% for thread in category.thread_set.all %}
-    <li><a href="{% url 'thread' thread.id 0 %}">{{ thread.title }}</a></li>
+    <li class="list-group-item"><a href="{% url 'thread' thread.id 0 %}">{{ thread.title }}</a></li>
     {% endfor %}
 </ul>
+{% endblock %}

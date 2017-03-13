@@ -1,11 +1,12 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.forms import UserCreationForm
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 
 import forum.models
 
 import math
+import json
 
 _MESSAGES_PER_PAGE = 20
 
@@ -26,7 +27,8 @@ def thread(request, thread_id, page_num):
     min_message_id = int(page_num) * _MESSAGES_PER_PAGE
     max_message_id = min_message_id + _MESSAGES_PER_PAGE + 1
     messages = thread.message_set.filter(id__gt=min_message_id).filter(id__lt=max_message_id)
-    return render(request, 'thread.html', {'thread': thread, 'messages': messages, 'total_page_count': total_page_count})
+    return render(request, 'thread.html', {'thread': thread, 'page_num': page_num,
+                                           'total_page_count': total_page_count})
 
 
 def profile(request, profile_id):
@@ -53,3 +55,28 @@ def register(request):
     return render(request, "register.html", {
         'form': form,
     })
+
+
+def load_messages(request):
+    '''
+    Ajax request.
+    Params:
+        thread_id, page_num
+    Return: {
+        'messages': ...
+    }
+    '''
+
+    thread = forum.models.Thread.objects.get(id=int(request.GET['thread_id']))
+    total_page_count = math.ceil(float(len(thread.message_set.all())) / _MESSAGES_PER_PAGE)
+    min_message_id = int(request.GET['page_num']) * _MESSAGES_PER_PAGE
+    max_message_id = min_message_id + _MESSAGES_PER_PAGE + 1
+    messages = thread.message_set.filter(id__gt=min_message_id).filter(id__lt=max_message_id)
+
+    messages_json = [message.as_dict() for message in messages]
+
+    response_data = {
+        'messages': messages_json
+    }
+
+    return HttpResponse(json.dumps(response_data), content_type='application/json')

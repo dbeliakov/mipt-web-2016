@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^profile/(?P<profile_id>\d+)/$', views.profile, name='profile'),
     url(r'^send_message/(?P<thread_id>\d+)/$', views.send_message, name='send_message'),
     url(r'^register/$', views.register, name='register'),
+    url(r'^load_messages/$', views.load_messages, name='load_messages'),
 ]

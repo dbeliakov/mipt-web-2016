@@ -9,18 +9,17 @@
 {% endblock %}
 
 {% block precontent %}
+<input type="hidden" id="thread_id" value="{{ thread.id  }}">
+<input type="hidden" id="page_num" value="{{ page_num  }}">
+
+
 <h2>Категория {{thread.category.title}}</h2>
 <h3> Обсуждениe {{thread.title}} </h3>
 {% endblock %}
 
 {% block content %}
-<ul class="list-group">
-    {% for message in messages %}
-    <li class="list-group-item">
-      <div class="author">{{message.author}}</div>
-      <div class="message"><p>{{message.text}}</p></div>
-    </li>
-    {% endfor %}
+
+<ul class="list-group" id="messages_list">
 </ul>
 
 {% if user.is_authenticated %}
@@ -35,3 +34,7 @@
 {% endif %}
 {% endblock %}
 
+
+{% block scripts %}
+<script src="{% static 'forum/js/load_messages.js' %}"></script>
+{% endblock %}

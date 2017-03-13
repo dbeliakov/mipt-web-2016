@@ -28,9 +28,16 @@ class Thread(models.Model):
 
 class Message(models.Model):
     thread = models.ForeignKey(Thread, null=True)
+    title = models.TextField(null=True)
     text = models.TextField()
     time = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User)
+
+    def as_dict(self):
+        return {
+            'text': self.text,
+            'author': str(self.author),
+        }
 
     def __unicode__(self):
         return self.text

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Веб-программирование на Физтехе 2016-2017</title>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../../../common/shower/themes/ribbon/styles/screen-16x10.css">
+</head>
+<body class="shower list">
+	<header class="caption">
+		<h1>Веб-программирование на Физтехе 2016-2017</h1>
+		<p>Занятие 10. Развертывание проектов с использованием Docker</p>
+	</header>
+	<section class="slide" id="cover">
+		<h2>Занятие 10. Развертывание проектов с использованием Docker</h2>
+		<p>Web Programming @ MIPT, 2016-2017</a></p>
+		<img src="pictures/cover.jpg" alt="" class="cover">
+		<!--
+			To apply styles to the certain slides
+			set slide ID to get needed elements
+			-->
+		<style>
+			#cover h2 {
+				margin:30px 0 0;
+				color:#FFF;
+				text-align:center;
+				font-size:70px;
+				}
+			#cover p {
+				margin:10px 0 0;
+				text-align:center;
+				color:#FFF;
+				font-style:italic;
+				font-size:20px;
+				}
+				#cover p a {
+					color:#FFF;
+					}
+		</style>
+	</section>
+
+
+	<section class="slide">
+		<h2>Виртуализация</h2>
+        <a href="https://ru.wikipedia.org/wiki/Виртуализация">Виртуализа́ция</a> — предоставление набора вычислительных ресурсов или их логического объединения, абстрагированное от аппаратной реализации, и обеспечивающее при этом логическую изоляцию друг от друга вычислительных процессов, выполняемых на одном физическом ресурсе.
+		<ul>
+			<li>Виртуализация серверов</li>
+			<li>Виртуализация приложений</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Виртуализация серверов</h2>
+        Преимущества:
+        <ul>
+            <li>Сокращение количества серверов благодаря консолидации</li>
+            <li>Упрощение администрирования</li>
+            <li>Слой абстракции между ПО и физическим железом</li>
+            <li>Безопасность</li>
+            <li>Отказоустойчивость</li>
+            <li>Гибкая настройка виртуальных серверов</li>
+        </ul>
+	</section>
+
+	<section class="slide">
+		<h2>Виртуализация серверов</h2>
+        Недостатки:
+        <ul>
+            <li>Ресурсоемкость</li>
+            <li>Разделение ресурсов</li>
+            <li>Возможная единая точка отказа</li>
+        </ul>
+	</section>
+
+	<section class="slide">
+		<h2>Виртуализация приложений</h2>
+		<ul>
+            <li>Значительно дешевле виртуализации серверов</li>
+            <li>Удобство в администрировании</li>
+            <li>Портируемость</li>
+            <li>Единое окружение для разработки и продакшена</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Docker</h2>
+        <a href="https://www.docker.com">Докер</a> — это открытая платформа для разработки, доставки и эксплуатации приложений. Docker разработан для более быстрого выкладывания ваших приложений. С помощью docker вы можете отделить ваше приложение от вашей инфраструктуры и обращаться с инфраструктурой как управляемым приложением.<br><br>
+        В своем ядре docker позволяет запускать практически любое приложение, безопасно изолированное в контейнере. Безопасная изоляция позволяет вам запускать на одном хосте много контейнеров одновременно. Легковесная природа контейнера, который запускается без дополнительной нагрузки гипервизора, позволяет вам добиваться больше от вашего железа.
+	</section>
+
+    <section class="slide">
+        <h2>Docker</h2>
+        <img src="pictures/architecture.png"/ style="width: 100%;">
+    </section>
+
+    <section class="slide">
+        <h2>Docker</h2>
+        <ul>
+            <li>Образы (images)</li>
+            <li>Реестр (registries)</li>
+            <li>Контейнеры</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        <h2>Docker образы</h2>
+        <ul>
+            <li>Read-only шаблон для контейнеров</li>
+            <li>В основе - <a href="https://en.wikipedia.org/wiki/UnionFS">UnionFS</a></li>
+            <li>Создание образа - это наложении уровней в UnionFS друг на друга</li>
+            <li>В основе каждого образа - базовый образ</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        <h2>Docker реестр</h2>
+        <ul>
+            <li>Хранилище docker образов</li>
+            <li>Публичный реестр - <a href="hub.docker.com">Docker Hub</a></li>
+            <li>Аналог репозиториев для docker-контейнеров</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        <h2>Docker контейнеры</h2>
+        <ul>
+            <li>Контейнер работает поверх образа</li>
+            <li>Создается слой для чтения-записи, в процессе работы контейнер может меняться</li>
+            <li>Взаимодействие с внешним миром происходит через сеть</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        <h2>Django in Docker: DEMO</h2>
+    </section>
+
+	<section class="slide">
+		<h2 class="shout shrink">Вопросы?</h2>
+	</section>
+	<!--
+		To hide progress bar from entire presentation
+		just remove “progress” element.
+		-->
+	<div class="progress"></div>
+	<script src="../../../common/shower/shower.min.js"></script>
+	<!-- Copyright © 2015 Yours Truly, Famous Inc. -->
+	<!-- Photos by John Carey, fiftyfootshadows.net -->
+</body>
+</html>

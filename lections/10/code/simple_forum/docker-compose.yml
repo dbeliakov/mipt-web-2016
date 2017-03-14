@@ -1,0 +1,14 @@
+version: '2'
+services:
+  web:
+    image: dbeliakov/simple-forum:latest
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    links:
+      - db:pgdb
+  db:
+    image: postgres
+    env_file:
+      - env.txt

@@ -11,3 +11,4 @@
 7. [Базы данных. SQL](lections/07)
 8. [Введение в Django. Django.ORM ](lections/08)
 9. [SimpleForum на Django](lections/09)
+10. [Развертывание проектов с использованием Docker](lections/10)

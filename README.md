@@ -12,3 +12,4 @@
 8. [Введение в Django. Django.ORM ](lections/08)
 9. [SimpleForum на Django](lections/09)
 10. [Развертывание проектов с использованием Docker](lections/10)
+11. [Введение в Go](lections/11)

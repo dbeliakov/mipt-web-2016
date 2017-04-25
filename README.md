@@ -13,3 +13,4 @@
 9. [SimpleForum на Django](lections/09)
 10. [Развертывание проектов с использованием Docker](lections/10)
 11. [Введение в Go](lections/11)
+12. [Введение в Go (продолжение)](lections/12)

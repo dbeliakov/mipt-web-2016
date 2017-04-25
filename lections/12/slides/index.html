@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Веб-программирование на Физтехе 2016-2017</title>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../../../common/shower/themes/ribbon/styles/screen-16x10.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css">
+</head>
+<body class="shower list">
+	<header class="caption">
+		<h1>Веб-программирование на Физтехе 2016-2017</h1>
+		<p>Занятие 12. Введение в язык программирования Go (Продолжение)</p>
+	</header>
+	<section class="slide" id="cover">
+		<h2>Занятие 12. Введение в язык программирования Go (Продолжение)</h2>
+		<p>Web Programming @ MIPT, 2016-2017</a></p>
+		<img src="pictures/cover.jpg" alt="" class="cover">
+		<!--
+			To apply styles to the certain slides
+			set slide ID to get needed elements
+			-->
+		<style>
+			#cover h2 {
+				margin:30px 0 0;
+				color:#FFF;
+				text-align:center;
+				font-size:70px;
+				}
+			#cover p {
+				margin:10px 0 0;
+				text-align:center;
+				color:#FFF;
+				font-style:italic;
+				font-size:20px;
+				}
+				#cover p a {
+					color:#FFF;
+					}
+		</style>
+	</section>
+
+
+	<section class="slide">
+		<h2>Многопоточность в Go</h2>
+		<ul>
+			<li>Основные инструменты - горутины и каналы</li>
+			<li>Горутина (goroutine) — это функция, выполняющаяся конкурентно с другими горутинами в том же адресном пространстве</li>
+			<li>Горутины очень легковесны</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Горутины</h2>
+		<ul>
+			<li>G (Goroutine) — Горутина, M (Machine) — Машина</li>
+			<li>Каждая Машина работает в отдельном потоке и способна выполнять только одну Горутину в момент времени</li>
+			<li>Максимальное число машин: <code>GOMAXPROCS</code> или <code>runtime.GOMAXPROCS(n int)</code></li>
+			<li>Планировщик Go распределяет готовые к исполнению горутины по машинам</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Горутины</h2>
+		<img src="pictures/goroutines.png" alt="" width="60%">
+		<a href="https://habrahabr.ru/post/141853/">Подробнее</a>
+	</section>
+
+	<section class="slide">
+		<h2>Горутины</h2>
+		<pre><code class="go" style="font-size: 15px;">
+package main
+import "fmt"
+func f(n int) {
+    for i := 0; i < 10; i++ {
+        fmt.Println(n, ":", i)
+    }
+}
+
+func main() {
+    go f(0)
+    var input string
+    fmt.Scanln(&input)
+}
+		</code></pre>
+	</section>
+
+	<section class="slide">
+		<h2>Каналы</h2>
+		<ul>
+			<li>Каналы обеспечивают возможность общения нескольких горутин друг с другом, чтобы синхронизировать их выполнение</li>
+			<li>Фактически, это блокирующая или буферезированная очередь</li>
+			<li>Создание канала: <code>c := make(chan string)</code>, <code>c := make(chan string, 5)</code></li>
+			<li>Можно указать направление: <code>chan<- string</code>, <code><-chan string</code></li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Каналы</h2>
+		<pre><code class="go" style="font-size: 11px;">
+func pinger(c chan string) {
+    for i := 0; ; i++ {
+        c <- "ping"
+    }
+}
+func printer(c chan string) {
+    for {
+        msg := <- c
+        fmt.Println(msg)
+        time.Sleep(time.Second * 1)
+    }
+}
+func main() {
+    var c chan string = make(chan string)
+
+    go pinger(c)
+    go printer(c)
+
+    var input string
+    fmt.Scanln(&input)
+}
+		</code></pre>
+	</section>
+
+	<section class="slide">
+		<h2>Select</h2>
+      <ul>
+          <li>Позволяет читать или писать из/в нескольких/-o каналов</li>
+					<li>По синтаксису схож с switch</li>
+					<li>Можно использовать для таймеров: <code>case <- time.After(time.Second)</code></li>
+      </ul>
+	</section>
+
+	<section class="slide">
+		<h2>Пакеты в Go</h2>
+      <ul>
+					<li>Импорт осуществляется по пути в <code>src</code></li>
+					<li>Название пакета не обязано совпадать с названием конечной папки</li>
+					<li>Все, что называется с маленькой буквы (<code>someFunction</code>) доступно на уровне пакета, все, что с большой <code>SomeFunction</code> доступно извне</li>
+      </ul>
+	</section>
+
+	<section class="slide">
+		<h2>Тестирование в Go</h2>
+      <ul>
+				<li>Тесты пишутся в файлах <code><name>_test.go</code></li>
+				<li>Тесты относятся к тому же пакету</li>
+				<li>Тесты определяются с помощью добавления Test к имени функции</li>
+				<li>Запуск тестов: <code>go test</code></li>
+      </ul>
+	</section>
+
+	<section class="slide">
+		<h2>Стандартная библиотека Go</h2>
+		<a href="http://golang-book.ru/chapter-13-core-packages.html">Основные вещи из стандартной библиотеки</li>
+	</section>
+
+	<section class="slide">
+		<h2 class="shout shrink">Вопросы?</h2>
+	</section>
+	<!--
+		To hide progress bar from entire presentation
+		just remove “progress” element.
+		-->
+	<div class="progress"></div>
+	<script src="../../../common/shower/shower.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/go.min.js"></script>
+	<script>
+		hljs.initHighlightingOnLoad()
+	</script>
+	<!-- Copyright © 2015 Yours Truly, Famous Inc. -->
+	<!-- Photos by John Carey, fiftyfootshadows.net -->
+</body>
+</html>
